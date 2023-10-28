@@ -1,5 +1,7 @@
 # FWParser
-Python command line tool for parsing raw firewall logs to a simple CSV or JSON representation
+Python command line tool for parsing raw firewall logs to a simple CSV or JSON representation.
+
+All **text** files can be processed. And **gz** or **xz** compressed files.
 
 # Why?
 This parser guides you through the file format you want to process. It will ask you for delimiter, possitions and allows you to work with replaces (they are some times needed because firewall logs of some vendors do not have a fixed position for relevant keys).
