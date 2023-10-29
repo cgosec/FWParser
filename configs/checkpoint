@@ -1,0 +1,30 @@
+{
+    "config": {
+        "replaces": {
+            "\"": "",
+            "origin:": "",
+            "src:": "",
+            "dst:": "",
+            "s_port:": "",
+            "service:": "",
+            " gw-da58d3 CheckPoint 1930 - [action:Accept": "",
+            " nat_addtnl_rulenum:0;":"",
+            "nat_rulenum:0;":"",
+            "conn_direction:Internal; ": "",
+            " rule_name:Cleanup rule;":"",
+            "log_delay:":";",
+            " gw-da58d3 CheckPoint 1930 - [action:Drop":"",
+            " gw-da58d3 CheckPoint 8363 - [action:Accept":""
+        }
+    },
+    "parse_arguments": {
+        "delimiter": ";",
+        "port_delimiter": "",
+        "pos_source_ip": 6,
+        "pos_dest_ip": 14,
+        "pos_source_port": 25,
+        "pos_dest_port": 26,
+        "pos_date": 0,
+        "pos_time": null
+    }
+}
