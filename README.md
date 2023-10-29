@@ -74,7 +74,7 @@ specify csv or json as output format
 
 **-z, --disable-validation**
 
-Disable the IP Validation. This is only recommented for processing e.g. DNS or Proxy Logs where the destination or source is no IP
+Disable the IP-Validation. This is only recommented for processing e.g. DNS or Proxy logs where the destination or source is no IP
 
 **-m, --connection-map**  
 
@@ -90,7 +90,7 @@ set logging level to debug and verbose
 
 **-s SKIP_FILES, --skip-files SKIP_FILES**
 
-number of files to skip in the list negative values will start from the end of the list and let this number of files away   
+number of files to skip in the list negative values will start from the end of the (directory) list and let this number of files away   
 
 **--help** 
 
