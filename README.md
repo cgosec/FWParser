@@ -1,9 +1,12 @@
 # FWParser
-Python command line tool for parsing raw firewall logs to a simple CSV or JSON representation.
+Python command line tool for parsing raw firewall logs to a simple CSV or JSON representation. (With automated check against Threatfox listed IPs)
 
-All **text** files can be processed. And **gz** or **xz** compressed files.
+All **text** files can be processed. Works with **gz** or **xz** compressed files too.
 
 # Why?
+
+Speeding up checking firewall data in Incident Response when no SIEM is available and the FW data format sucks (as most of the time)...
+
 This parser guides you through the file format you want to process. It will ask you for delimiter, possitions and allows you to work with replaces (they are some times needed because firewall logs of some vendors do not have a fixed position for relevant keys).
 
 After you defined the delimiter, positions of:
@@ -19,7 +22,7 @@ and created needed replaces, you can save you sprecifications for the format in 
 # Parameters
 **-d DIR, --dir DIR**     
 
-Use this to parse a whole directory. Make sure only valid gz files are in there. (either -d or -f is needed)
+Use this to parse a whole directory. Make sure only valid text, gz or xz files are in there. (either -d or -f is needed)
   
 **-f FILE, --file FILE**  
 
@@ -38,6 +41,7 @@ the path were the output files will be stored, cwd if not specified
 use this if you want to parse everything into a single file. (without file extention)
 
 **-ip FILTER_IP, --filter-ip FILTER_IP**
+
 - 'threatfox' for IPs listed in threatfox https://threatfox.abuse.ch/export/ (default 30days. set -days for custom value);
 - 'public' for only entries having a public IP in source or destination;
 - single ip: eg. '192.168.0.1';
@@ -51,6 +55,7 @@ IPs set to 0 will take the whole list.
 if not specified the default is 30 days
 
 **-p FILTER_PORT, --filter-port FILTER_PORT**
+
 - single port: eg. '53'or a 
 - list of ports: eg. '53,443' or a 
 - range of ports: eg. '1-1024' you can specify multiple ranges seperated by a ','
@@ -74,6 +79,7 @@ Disable the IP Validation. This is only recommented for processing e.g. DNS or P
 **-m, --connection-map**  
 
 outputs a connection map as a json file having for each source a dict of each destination having a dict of each destination port having a list of timestamps
+
 **-v, --verbose**
 
 see more output on the console
@@ -214,7 +220,7 @@ Lets check the output file:
 
 seems like our files have been processed correctly! :)
 
-## Threatfox check of firewall data
+## Automatic Threatfox check
 
 You can filter for known maliciouse connections by specifying the threatfox filter
 
