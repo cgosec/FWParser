@@ -181,7 +181,6 @@ def get_delimiter(file_list):
         elif user_input.lower() == "exit":
             raise SystemExit(0)
         else:
-            print()
             return user_input
 
 
@@ -374,6 +373,7 @@ def parse_log_line(line, delimiter, pos_source_ip, pos_dest_ip, pos_source_port,
     """
     Parse a log line, splitting it by delimiter and port delimiter, and returning a dictionary with the parsed values.
     """
+    parsed = None
     try:
         fields = line.split(delimiter)
         source_ip = ""
@@ -449,11 +449,13 @@ def parse_log_line(line, delimiter, pos_source_ip, pos_dest_ip, pos_source_port,
                 parsed["first_seen_utc"] = threatfox_entry["first_seen_utc"]
                 parsed["malware"] = threatfox_entry["malware"]
                 parsed["confidence"] = threatfox_entry["confidence"]
-
+        if not parsed:
+            raise ValueError("Line could not be processed")
         return parsed
     except Exception as e:
         # error longging will only happen when no filter is applied
-        print(e)
+        if parsed:
+            logger.debug(parsed)
         logger.debug(e)
         if public_ip_pattern == ip_pattern or filter_for_ips or filter_for_ports:
             return "skip"
@@ -713,6 +715,9 @@ if __name__ == "__main__":
 
     logger.info("Running with Argumtens:")
     print("Running with Argumtens:")
+
+    if not parse_arguments:
+        parse_arguments = {}
 
     for k, v in parse_arguments.items():
         logger.info(f"{k}\t\t{v}")
