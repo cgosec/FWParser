@@ -471,6 +471,7 @@ def write_to_file(objects_list, path, is_csv=True):
     file_mode = "a" if is_csv else "a+"
     keys = objects_list[0].keys()
     file_ending = ".csv" if is_csv else ".json"
+    path = path + "_fwparser"
     if threatfox_filtering:
         path = path + "_threatfox" + file_ending
     else:
